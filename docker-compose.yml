@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    container_name: video-admin-catalog-3
+    build: .
+    command: ./.docker/start.sh
+    ports:
+      - 12002:12002
+    volumes:
+      - .:/home/node/app
