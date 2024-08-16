@@ -29,7 +29,7 @@ export class Config {
     static rabbitmqUri() {
         Config.readEnv();
 
-        return Config.env.RABBITMQ_URI;
+        return Config.env.RABBITMQ_URI;     
     }
 
     static readEnv() {
