@@ -1,5 +1,5 @@
 
-import { ISearchableRepository } from "../../shared/domain/repository.interface";
+import { SearchableRepository } from "../../shared/domain/repository.interface";
 import { SearchParams } from "../../shared/domain/search-params";
 import { SearchResult } from "../../shared/domain/search-result";
 import { Category } from "./category.entity";
@@ -15,7 +15,7 @@ export class CategorySearchResult extends SearchResult<Category> {
 
 }
 
-export interface ICategoryRepository extends ISearchableRepository<
+export interface CategoryRepository extends SearchableRepository<
   Category,
   Uuid,
   CategoryFilter,
