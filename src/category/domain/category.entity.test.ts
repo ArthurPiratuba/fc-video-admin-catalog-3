@@ -1,5 +1,5 @@
-import { Category } from "../src/category/domain/category.entity";
-import { Uuid } from "../src/category/domain/uuid.vo";
+import { Category } from "./category.entity";
+import { Uuid } from "./uuid.vo";
 
 describe('Category Unit Tests', () => {
 
@@ -221,7 +221,7 @@ describe("Category Validator", function () {
             });
 
             expect(() => category.changeName("t".repeat(256))).toContainsErrorMessages({
-                name: [                    
+                name: [
                     "name must be shorter than or equal to 255 characters"
                 ]
             });

@@ -1,6 +1,6 @@
 import { DataType } from "sequelize-typescript";
-import { CategoryModel } from "../src/category/infra/sequelize/category.model";
-import { setupSequelize } from "../src/shared/infra/helpers";
+import { setupSequelize } from "../../../../shared/infra/testing/helpers";
+import { CategoryModel } from "./category.model";
 
 describe('CategoryModel Integration Tests', () => {
     setupSequelize({ models: [CategoryModel] });
@@ -8,9 +8,6 @@ describe('CategoryModel Integration Tests', () => {
     test('mapping props', () => {
         const attributesMap = CategoryModel.getAttributes();
         const attributes = Object.keys(CategoryModel.getAttributes());
-        console.log(attributes, attributesMap);
-
-
         expect(attributes).toStrictEqual([
             'category_id',
             'name',

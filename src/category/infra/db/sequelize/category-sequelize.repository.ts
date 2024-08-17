@@ -1,11 +1,11 @@
 import { literal, Op } from "sequelize";
-import { NotFoundError } from "../../../shared/domain/not-found.error";
-import { SearchableRepository } from "../../../shared/domain/repository.interface";
-import { Category } from "../../domain/category.entity";
-import { CategorySearchParams, CategorySearchResult } from "../../domain/category.repository";
-import { Uuid } from "../../domain/uuid.vo";
+import { NotFoundError } from "../../../../shared/domain/not-found.error";
+import { SearchableRepository } from "../../../../shared/domain/repository.interface";
+import { Category } from "../../../domain/category.entity";
+import { CategorySearchParams, CategorySearchResult } from "../../../domain/category.repository";
+import { Uuid } from "../../../domain/uuid.vo";
 import { CategoryModel } from "./category.model";
-import { SortDirection } from "../../../shared/domain/search-params";
+import { SortDirection } from "../../../../shared/domain/search-params";
 
 export class CategorySequelizeRepository implements SearchableRepository<Category, Uuid> {
 
