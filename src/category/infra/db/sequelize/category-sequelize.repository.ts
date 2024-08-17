@@ -58,15 +58,15 @@ export class CategorySequelizeRepository implements SearchableRepository<Categor
         await this.categoryModelClass.destroy({ where: { category_id: category_id.id } });
     }
 
-    async findById(entity_id: Uuid): Promise<Category> {
-        const model = await this._get(entity_id.id);
-        return new Category({
+    async findById(entity_id: Uuid): Promise<Category | null> {
+        const model = await this.categoryModelClass.findByPk(entity_id.id);
+        return model ? new Category({
             category_id: new Uuid(model.category_id),
             name: model.name,
             description: model.description,
             is_active: model.is_active,
             created_at: model.created_at
-        })
+        }) : null;
     }
 
     private async _get(id: string) {
