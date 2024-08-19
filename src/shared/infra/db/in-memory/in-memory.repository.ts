@@ -1,8 +1,8 @@
 import { Entity } from "../../../domain/entity";
 import { NotFoundError } from "../../../domain/not-found.error";
-import { Repository, SearchableRepository } from "../../../domain/repository.interface";
-import { SearchParams, SortDirection } from "../../../domain/search-params";
-import { SearchResult } from "../../../domain/search-result";
+import { Repository, SearchableRepository } from "../../../domain/repository/repository.interface";
+import { SearchParams, SortDirection } from "../../../domain/repository/search-params";
+import { SearchResult } from "../../../domain/repository/search-result";
 import { ValueObject } from "../../../domain/value-object";
 
 export abstract class InMemoryRepository<

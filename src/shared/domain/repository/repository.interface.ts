@@ -1,8 +1,8 @@
 
-import { Entity } from "./entity";
+import { Entity } from "../entity";
+import { ValueObject } from "../value-object";
 import { SearchParams } from "./search-params";
 import { SearchResult } from "./search-result";
-import { ValueObject } from "./value-object";
 
 export interface Repository<E extends Entity, EntityId extends ValueObject> {
 
