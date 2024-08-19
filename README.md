@@ -15,4 +15,8 @@ Para passar neste desafio, todos os testes deverão passar e não deverá ter ne
 Bom trabalho!
 
 ## Principais lições aprendidas
-- 
+- Sequelize ORM
+- Casos de Uso (na prática)
+- Alguns cenários para uso do operador Spread (...)
+- Paginação de dados com ORM e Casos de Uso
+- Alguns conceitos do Jest
