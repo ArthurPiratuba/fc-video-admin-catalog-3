@@ -3,6 +3,7 @@ import { setupSequelize } from "../../../../shared/infra/testing/helpers";
 import { Category } from "../../../domain/category.entity";
 import { CategorySearchParams, CategorySearchResult } from "../../../domain/category.repository";
 import { Uuid } from "../../../domain/uuid.vo";
+import { CategoryModelMapper } from "./category-model-mapper";
 import { CategorySequelizeRepository } from "./category-sequelize.repository";
 import { CategoryModel } from "./category.model";
 
@@ -73,40 +74,40 @@ describe('CategorySequelizeRepository Integration Test', () => {
     });
 
     describe('search method tests', () => {
-        // it('should only apply paginate when other params are null', async () => {
-        //     const created_at = new Date();
-        //     const categories = Category.fake()
-        //         .theCategories(16)
-        //         .withName('Movie')
-        //         .withDescription(null)
-        //         .withCreatedAt(created_at)
-        //         .build();
-        //     await repository.bulkInsert(categories);
-        //     const spyToEntity = jest.spyOn(CategoryModelMapper, 'toEntity');
+        it('should only apply paginate when other params are null', async () => {
+            const created_at = new Date();
+            const categories = Category.fake()
+                .theCategories(16)
+                .withName('Movie')
+                .withDescription(null)
+                .withCreatedAt(created_at)
+                .build();
+            await repository.bulkInsert(categories);
+            const spyToEntity = jest.spyOn(CategoryModelMapper, 'toEntity');
 
-        //     const searchOutput = await repository.search(new CategorySearchParams());
-        //     expect(searchOutput).toBeInstanceOf(CategorySearchResult);
-        //     expect(spyToEntity).toHaveBeenCalledTimes(15);
-        //     expect(searchOutput.toJSON()).toMatchObject({
-        //         total: 16,
-        //         current_page: 1,
-        //         last_page: 2,
-        //         per_page: 15,
-        //     });
-        //     searchOutput.items.forEach((item) => {
-        //         expect(item).toBeInstanceOf(Category);
-        //         expect(item.category_id).toBeDefined();
-        //     });
-        //     const items = searchOutput.items.map((item) => item.toJSON());
-        //     expect(items).toMatchObject(
-        //         new Array(15).fill({
-        //             name: 'Movie',
-        //             description: null,
-        //             is_active: true,
-        //             created_at: created_at,
-        //         }),
-        //     );
-        // });
+            const searchOutput = await repository.search(new CategorySearchParams());
+            expect(searchOutput).toBeInstanceOf(CategorySearchResult);
+            expect(spyToEntity).toHaveBeenCalledTimes(15);
+            expect(searchOutput.toJSON()).toMatchObject({
+                total: 16,
+                current_page: 1,
+                last_page: 2,
+                per_page: 15,
+            });
+            searchOutput.items.forEach((item) => {
+                expect(item).toBeInstanceOf(Category);
+                expect(item.category_id).toBeDefined();
+            });
+            const items = searchOutput.items.map((item) => item.toJSON());
+            expect(items).toMatchObject(
+                new Array(15).fill({
+                    name: 'Movie',
+                    description: null,
+                    is_active: true,
+                    created_at: created_at,
+                }),
+            );
+        });
 
         it('should order by created_at DESC when search params are null', async () => {
             const created_at = new Date();
