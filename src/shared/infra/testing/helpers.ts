@@ -5,6 +5,7 @@ export function setupSequelize(options: SequelizeOptions = {}) {
     let _sequelize: Sequelize;
 
     beforeAll(async () => {
+        console.log(Config.db())
         _sequelize = new Sequelize({
             ...Config.db(),
             ...options,
