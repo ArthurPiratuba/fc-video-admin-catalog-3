@@ -1,11 +1,11 @@
 import { literal, Op } from "sequelize";
-import { SortDirection } from "../../../../shared/domain/search-params";
 import { CategoryRepository, CategorySearchParams, CategorySearchResult } from "../../../domain/category.repository";
 import { CategoryModel } from "./category.model";
 import { Category } from "../../../domain/category.entity";
 import { CategoryModelMapper } from "./category-model-mapper";
 import { NotFoundError } from "../../../../shared/domain/not-found.error";
 import { Uuid } from "../../../domain/uuid.vo";
+import { SortDirection } from "../../../../shared/domain/repository/search-params";
 
 export class CategorySequelizeRepository implements CategoryRepository {
     sortableFields: string[] = ['name', 'created_at'];
@@ -31,18 +31,11 @@ export class CategorySequelizeRepository implements CategoryRepository {
 
     async update(entity: Category): Promise<void> {
         const id = entity.category_id.id;
-
         const modelProps = CategoryModelMapper.toModel(entity);
-        const [affectedRows] = await this.categoryModel.update(
-            modelProps.toJSON(),
-            {
-                where: { category_id: entity.category_id.id },
-            },
-        );
-
-        if (affectedRows !== 1) {
-            throw new NotFoundError(id, this.getEntity());
-        }
+        const [affectedRows] = await this.categoryModel.update(modelProps.toJSON(), {
+            where: { category_id: entity.category_id.id }
+        });
+        if (affectedRows !== 1) throw new NotFoundError(id, this.getEntity());
     }
 
     async delete(category_id: Uuid): Promise<void> {
