@@ -1,4 +1,4 @@
-import { SortDirection } from "../../../../shared/domain/search-params";
+import { SortDirection } from "../../../../shared/domain/repository/search-params";
 import { InMemorySearchableRepository } from "../../../../shared/infra/db/in-memory/in-memory.repository";
 import { Category } from "../../../domain/category.entity";
 import { CategoryFilter, CategoryRepository } from "../../../domain/category.repository";
